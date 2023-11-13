@@ -1,5 +1,18 @@
 <?php
 session_start();
+$intentos = 0;
+
+if (isset($_SESSION['intentos'])) {
+  $intentos = $_SESSION['intentos'];
+}
+$intentos++;
+
+$_SESSION['intentos'] = $intentos;
+
+if ($_SESSION['intentos'] > 5) {
+  include_once 'app/accesoDenegado.php';
+  exit();
+}
 
 include_once('app/funciones.php');
 
